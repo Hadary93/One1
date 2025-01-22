@@ -1,0 +1,117 @@
+# Build results
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+*.log
+*.tlog
+*.vspscc
+*.vspxproj
+*.gpState
+*.vspcc
+
+# Visual Studio-specific files
+.vs/
+.vscode/
+*.vsix
+*.ncrunch*
+
+# Package directories
+*.nuget/
+packages/
+*.nupkg
+*.snupkg
+
+# Rider-specific files
+.idea/
+*.iml
+
+# Backup and temporary files
+*.bak
+*.swp
+*.tmp
+*.temp
+*.old
+*.orig
+*.manifest
+
+# Crash and debug files
+*.stackdump
+*.pid
+*.dump
+
+# Coverage and test results
+TestResults/
+*.coverage
+*.coveragexml
+*.cov
+*.profdata
+*.pyc
+*.pyo
+*.pytest_cache/
+
+# Configuration files
+appsettings.*.json
+appsettings.json
+secrets.json
+
+# Node.js files (if applicable)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE files
+*.code-workspace
+*.sublime-workspace
+*.sublime-project
+
+# Docker and cloud-specific
+docker-compose.override.yml
+docker-compose.local.yml
+docker-compose.*.yml
+Dockerfile.*
+.env
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Logs
+*.log
+*.trace
+
+# JetBrains Rider files
+.idea/
+*.sln.iml
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Libman
+libman.json
+
+# Generated files
+*.g.i.cs
+*.g.cs
+*.AssemblyAttributes.cs
+
+# Database
+*.mdf
+*.ldf
+
+# Temp files
+~$*
