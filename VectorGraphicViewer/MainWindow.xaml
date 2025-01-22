@@ -1,0 +1,94 @@
+﻿<Window x:Class="VectorGraphicViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VectorGraphicViewer"
+        xmlns:converters="clr-namespace:VectorGraphicViewer.Model.Converters"
+        xmlns:shapes="clr-namespace:VectorGraphicViewerShapesLib.Model;assembly=ShapesLib"
+        xmlns:selectors="clr-namespace:VectorGraphicViewer.Model.Selectors"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="{Binding Height}" Width="{Binding Width}">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="SizeChanged">
+            <i:InvokeCommandAction Command="{Binding SizeChangedCommand}"  PassEventArgsToCommand="True"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.Resources>
+        <converters:LineConverter x:Key="Lconverter"/>
+        <converters:CircleConverter x:Key="CircleConverter"/>
+        <converters:TriangleConverter x:Key="TriangleConverter"/>
+        <converters:TypeConverter x:Key="TypeConverter"/>
+        <converters:CenterContentConverter x:Key="CenterContentConverter"/>
+        <selectors:ShapeTemplateSelector x:Key="ShapeSelector"/>
+
+        <DataTemplate DataType="{x:Type shapes:Line}" x:Key="LineTemplate">
+            <Line X1="{Binding Converter={StaticResource Lconverter}, ConverterParameter= X1}" 
+            Y1="{Binding Converter={StaticResource Lconverter}, ConverterParameter= Y1}" 
+            X2 ="{Binding Converter={StaticResource Lconverter}, ConverterParameter= X2}" 
+            Y2 ="{Binding Converter={StaticResource Lconverter}, ConverterParameter= Y2}" 
+            Stroke="{Binding Converter={StaticResource Lconverter}, ConverterParameter= Stroke}"
+            StrokeThickness="1"/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type shapes:Circle}" x:Key="CircleTemplate">
+
+            <Ellipse 
+             Width="{Binding Converter={StaticResource CircleConverter}, ConverterParameter=Width}" 
+             Height="{Binding Converter={StaticResource CircleConverter}, ConverterParameter=Height}" 
+             Fill="{Binding Converter={StaticResource CircleConverter}, ConverterParameter= Fill}"
+             StrokeThickness="1"
+             Stroke="{Binding Converter={StaticResource CircleConverter}, ConverterParameter= Stroke}">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform X="{Binding Converter={StaticResource CircleConverter}, ConverterParameter=ShiftX}" Y="{Binding Converter={StaticResource CircleConverter}, ConverterParameter=ShiftY}" />
+                </Ellipse.RenderTransform>
+            </Ellipse>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type shapes:Triangle}" x:Key="TriangleTemplate">
+            <Polygon Points="{Binding Converter={StaticResource TriangleConverter}, ConverterParameter= Points}" 
+                 Fill="{Binding Converter={StaticResource TriangleConverter}, ConverterParameter= Fill}" Stroke="{Binding Converter={StaticResource TriangleConverter}, ConverterParameter= Stroke}"/>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="15*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical" >
+            <Button Content="LoadFile" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Stretch"  Width="Auto" Height="50" Background="LightBlue"
+                     Command="{Binding LoadFileCommand}"/>
+            <Button x:Name="Dynamic" Content="Dynamic Resize" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Stretch"  Width="Auto" Height="50" 
+                    Background="LightBlue" Command="{Binding DynamicResizeCommand}" 
+                    CommandParameter="{Binding ElementName=Dynamic}" BorderThickness="1" 
+                    BorderBrush="{Binding DynamicResizeActive}"/>
+        </StackPanel>
+
+
+        <ItemsControl ItemsSource="{Binding Shapes}" x:Name="MyItemsController" Grid.Column="1">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas x:Name="MyCanvas" Background="Transparent" Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+               Height="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
+                        <Canvas.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform x:Name="scaleTransform"
+                             ScaleX="{Binding CanvasScaleX}"
+                             ScaleY="{Binding CanvasScaleY}"/>
+                                <TranslateTransform X="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Converter={StaticResource CenterContentConverter}}" 
+                                        Y="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Converter={StaticResource CenterContentConverter}}"/>
+                            </TransformGroup>
+                        </Canvas.RenderTransform>
+                    </Canvas>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplateSelector>
+                <StaticResource ResourceKey="ShapeSelector" />
+            </ItemsControl.ItemTemplateSelector>
+        </ItemsControl>
+    </Grid>
+</Window>

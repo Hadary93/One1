@@ -1,0 +1,11 @@
+C:\Hadary\Personal\T-1\VectorGraphicViewerShapes\bin\Debug\net9.0\ShapesLib.deps.json
+C:\Hadary\Personal\T-1\VectorGraphicViewerShapes\bin\Debug\net9.0\ShapesLib.dll
+C:\Hadary\Personal\T-1\VectorGraphicViewerShapes\bin\Debug\net9.0\ShapesLib.pdb
+C:\Hadary\Personal\T-1\VectorGraphicViewerShapes\obj\Debug\net9.0\ShapesLib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Hadary\Personal\T-1\VectorGraphicViewerShapes\obj\Debug\net9.0\ShapesLib.AssemblyInfoInputs.cache
+C:\Hadary\Personal\T-1\VectorGraphicViewerShapes\obj\Debug\net9.0\ShapesLib.AssemblyInfo.cs
+C:\Hadary\Personal\T-1\VectorGraphicViewerShapes\obj\Debug\net9.0\ShapesLib.csproj.CoreCompileInputs.cache
+C:\Hadary\Personal\T-1\VectorGraphicViewerShapes\obj\Debug\net9.0\ShapesLib.dll
+C:\Hadary\Personal\T-1\VectorGraphicViewerShapes\obj\Debug\net9.0\refint\ShapesLib.dll
+C:\Hadary\Personal\T-1\VectorGraphicViewerShapes\obj\Debug\net9.0\ShapesLib.pdb
+C:\Hadary\Personal\T-1\VectorGraphicViewerShapes\obj\Debug\net9.0\ref\ShapesLib.dll
